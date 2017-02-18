@@ -13,12 +13,10 @@ console.log(`result is ${result}`)
 
 // read file
 
-let content;
+fs.readFile(__dirname + '/commons/file.txt', 'utf-8', (err, content) => {
+    if (err) {
+         return console.log(err);
+    }
 
-try {
-    content = fs.readFileSync(__dirname + '/commons/file.txt', 'utf-8');
-} catch (er) {
-    console.log(er);
-}
-
-console.log(`hehe udalo sie ${content}`);
+    console.log(content);
+});
