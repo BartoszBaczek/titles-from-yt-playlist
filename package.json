@@ -4,12 +4,15 @@
   "description": "dunno yet",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "bbaczek",
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.1",
     "youtube-api": "^2.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
