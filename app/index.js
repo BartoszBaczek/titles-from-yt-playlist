@@ -7,7 +7,11 @@ let app = express();
 
 app.get('/', (req, res) => {
     playlist.getData((err, data) => {
-        res.send(data);
+        if (err) {
+            res.send(err.message);
+        } else {
+            res.send(data);
+        }
     });
 });
 

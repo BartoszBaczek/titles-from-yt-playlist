@@ -1,10 +1,11 @@
+const jsonReader = require("./jsonReader");
+
 const google = require("googleapis");
-const apiKeyReader = require("./apiKeyReader");
+const yt = google.youtube('v3');
 
 function getData(callback) {
     
-    apiKeyReader.getKey((key) => {
-        let yt = google.youtube('v3');
+    jsonReader.getApiKey((key) => {
         yt.playlistItems.list({
             key: key,
             part: 'snippet',
