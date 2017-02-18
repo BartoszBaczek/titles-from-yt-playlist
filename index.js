@@ -6,11 +6,18 @@ const port = 3000;
 let app = express();
 
 app.get('/', (req, res) => {
-    playlist.getData((err, data) => {
+    let titles = [];
+
+    playlist.getAllData(null, (err, data) => {
         if (err) {
-            res.send(err.message);
-        } else {
-            res.send(data);
+            console.log(`ERROR: ${err}`);
+        }
+        if (data) {
+            data.forEach((singleData) => {
+                titles.push(singleData.snippet.title);
+            });
+            
+            res.send(titles);
         }
     });
 });
