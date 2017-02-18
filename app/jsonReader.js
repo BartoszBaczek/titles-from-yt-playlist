@@ -9,13 +9,4 @@ function getApiKey(callback) {
     });
 }
 
-function getPlaylistId(callback) {
-    jsonfile.readFile(playlistDataFile, (err, obj) => {
-        callback(obj.id);
-    });
-}
-
-module.exports = {
-    getApiKey,
-    getPlaylistId
-};
+module.exports.getApiKey = getApiKey;

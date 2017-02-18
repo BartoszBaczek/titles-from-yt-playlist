@@ -1,6 +1,5 @@
 const playlist = require("./app/playlist");
 const express = require("express");
-
 const port = 3000;
 
 let app = express();
@@ -9,19 +8,21 @@ app.get('/', (req, res) => {
     res.send('hello');
 });
 
-app.get('/playlistContent', (req, res) => {
-    let titles = [];
+app.get('/playlistContent/:playlistId', (req, res) => {
 
-    playlist.getAllData(null, (err, data) => {
-        if (err) {
-            console.log(`ERROR: ${err}`);
-        }
+    let titles = [];
+    
+    playlist.getAllData(null, req.params.playlistId, (err, data) => {
         if (data) {
             data.forEach((singleData) => {
-                titles.push(singleData.snippet.title);
+                titles.push({"titles": singleData.snippet.title});
             });
-            
-            res.send(titles);
+
+            let response = {
+                "titles": titles
+            };
+
+            res.send(response);
         }
     });
 })

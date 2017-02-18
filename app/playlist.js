@@ -4,12 +4,12 @@ const google = require("googleapis");
 const yt = google.youtube('v3');
 
 var responses = [];
-function getAllData(startToken, callback) {
+function getAllData(startToken, playlistId, callback) {
     jsonReader.getApiKey((key) => {
         yt.playlistItems.list({
             key: key,
             part: 'snippet',
-            playlistId: 'PLOnoN1ELl39q0ORoNfOqm5x0g6h6EnPg3',
+            playlistId: playlistId,
             maxResults: 50,
             pageToken: startToken
         }, (err, data) => {
@@ -18,9 +18,10 @@ function getAllData(startToken, callback) {
             });
 
             if (data.nextPageToken) {
-                getAllData(data.nextPageToken, callback)
+                getAllData(data.nextPageToken, playlistId, callback)
             } else {
                 callback(err, responses);
+                responses = [];
             }
         });
     });
