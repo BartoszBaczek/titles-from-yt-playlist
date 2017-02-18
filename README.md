@@ -14,7 +14,8 @@ git clone https://github.com/BartoszBaczek/titles-from-yt-playlist.git
 cd titles-from-yt-playlist
 # Install dependencies and run the app
 npm install && npm start
-# Go to http://localhost:3000/playlistContent/:playlistId
+# Go to: 
+http://localhost:3000/playlistContent/:playlistId
 ```
 
 #### License [MIT](LICENSE.md)
