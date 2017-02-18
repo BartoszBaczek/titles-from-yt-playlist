@@ -2,7 +2,7 @@ const calc = require("./calc");
 const fs = require("fs");
 const http = require("http");
 const port = 3000;
-
+const express = require("express");
 
 // easy
 
@@ -24,17 +24,34 @@ fs.readFile(__dirname + '/commons/file.txt', 'utf-8', (err, content) => {
 
 
 // http (version without express)
-const requestHandler = (request, response) => {
-    console.log(request.url);
-    response.end('Hello Node.js server!');
-}
+// const requestHandler = (request, response) => {
+//     console.log(request.url);
+//     response.end('Hello Node.js server!');
+// }
 
-const server = http.createServer(requestHandler);
+// const server = http.createServer(requestHandler);
 
-server.listen(port, (err) => {
-    if (err) {
-        return console.log(err);
-    }
+// server.listen(port, (err) => {
+//     if (err) {
+//         return console.log(err);
+//     }
 
-    console.log(`server is listening on port ${port}`);
+//     console.log(`server is listening on port ${port}`);
+// });
+
+
+// http (version with express)
+
+const app = express();
+
+app.get('/', (request, response) => {
+    response.send('hello from express');
+});
+
+app.listen(port, (err) => {
+   if (err) {
+       return console.log(err);
+   }
+
+   console.log(`server listening on port ${port}`);
 });
