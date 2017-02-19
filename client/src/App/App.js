@@ -29,7 +29,6 @@ class App extends Component {
       playlistId: playlistId
     }, () => {
       if (this.state.playlistId) {
-        console.log(this.state.playlistId);
         Client.getPlaylistData(this.state.playlistId, (titles) => {
           this.setState({
             titles: titles
