@@ -21,6 +21,7 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
+
     return response.json();
 }
 

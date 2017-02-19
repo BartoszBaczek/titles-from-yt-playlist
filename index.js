@@ -9,25 +9,27 @@ app.use(express.static('client/public'));
 
 app.get('/abc', (req, res) => {
 
-    console.log('i got request')
     let titles = [];
     
     playlist.getAllData(null, (err, data) => {
+        if (err) {
+            console.log(`ERROR: ${err}`);
+        }
         if (data) {
             data.forEach((singleData) => {
-                titles.push({"titles": singleData.snippet.title});
+                titles.push({"title": singleData.snippet.title});
             });
-
-            let response = {
-                "titles": titles
-            };
-            res.json(JSON.stringify(response));
         }
+
+        res.json(JSON.stringify(titles));
     });
 })
 
 app.get('*', (req, res) => {
-    res.json({"value": "gowno w mojej dupie"})
+
+    let response = {"404": "404"}
+
+    res.json(JSON.stringify(response));
 })
 
 

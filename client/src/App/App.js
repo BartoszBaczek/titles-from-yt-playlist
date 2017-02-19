@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import Client from './Client';
+import Client from './../Client';
 
 class App extends Component {
   state = {
-    responseText: ''
+    playlistTitles: []
   }
 
   componentDidMount() {
     Client.getPlaylistData((titles) => {
       this.setState({
-        responseText: titles
+        responseText: titles[1]
       });
     });
   }
