@@ -1,15 +1,12 @@
-const jsonReader = require("./jsonReader");
-
 const google = require("googleapis");
 const yt = google.youtube('v3');
 
 var responses = [];
-function getAllData(startToken, callback) {
-    jsonReader.getApiKey((key) => {
+function getAllData(playlistId, startToken, callback) {
         yt.playlistItems.list({
-            key: key,
+            key: "AIzaSyBMYcLHyGpd4nLq-9S_J9Iv94Q4l7hVMAQ",
             part: 'snippet',
-            playlistId: 'PLOnoN1ELl39q0ORoNfOqm5x0g6h6EnPg3',
+            playlistId: playlistId,
             maxResults: 50,
             pageToken: startToken
         }, (err, data) => {
@@ -18,13 +15,12 @@ function getAllData(startToken, callback) {
             });
 
             if (data.nextPageToken) {
-                getAllData(data.nextPageToken, callback)
+                getAllData(playlistId, data.nextPageToken, callback)
             } else {
                 callback(err, responses);
                 responses = [];
             }
         });
-    });
 }
 
 module.exports.getAllData = getAllData;

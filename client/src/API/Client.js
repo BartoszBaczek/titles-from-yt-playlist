@@ -1,6 +1,6 @@
-function getPlaylistData(callback) {
+function getPlaylistData(query, callback) {
 
-    return fetch(`abc`, {
+    return fetch(`playlistid?q=${query}`, {
         accept: 'application/json'
     }).then(checkStatus)
       .then(parseJSON)

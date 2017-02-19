@@ -7,11 +7,13 @@ app.set('port', (process.env.PORT || 3001));
 
 app.use(express.static('client/public'));
 
-app.get('/abc', (req, res) => {
+app.get('/playlistid', (req, res) => {
+
+    const playlistID = req.query.q;
 
     let titles = [];
     
-    playlist.getAllData(null, (err, data) => {
+    playlist.getAllData(playlistID, null, (err, data) => {
         if (err) {
             console.log(`ERROR: ${err}`);
         }
