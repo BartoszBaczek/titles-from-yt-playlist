@@ -4,12 +4,12 @@ const google = require("googleapis");
 const yt = google.youtube('v3');
 
 var responses = [];
-function getAllData(startToken, playlistId, callback) {
+function getAllData(startToken, callback) {
     jsonReader.getApiKey((key) => {
         yt.playlistItems.list({
             key: key,
             part: 'snippet',
-            playlistId: playlistId,
+            playlistId: 'PLOnoN1ELl39q0ORoNfOqm5x0g6h6EnPg3',
             maxResults: 50,
             pageToken: startToken
         }, (err, data) => {
@@ -18,7 +18,7 @@ function getAllData(startToken, playlistId, callback) {
             });
 
             if (data.nextPageToken) {
-                getAllData(data.nextPageToken, playlistId, callback)
+                getAllData(data.nextPageToken, callback)
             } else {
                 callback(err, responses);
                 responses = [];
